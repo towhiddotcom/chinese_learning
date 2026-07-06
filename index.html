@@ -600,6 +600,79 @@
             box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
         }
 
+        /* ============ VIDEO PLAYLIST SECTIONS ============ */
+        .video-sections {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .video-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .video-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .video-tab {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid var(--glass-border);
+            background: white;
+            color: var(--text-muted);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+
+        .video-tab:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .video-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 15px rgba(196, 30, 58, 0.3);
+        }
+
+        .video-content {
+            display: none;
+            animation: fade-in 0.5s ease;
+        }
+
+        .video-content.active {
+            display: block;
+        }
+
+        .video-viewer {
+            background: white;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            position: relative;
+            padding-top: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+
+        .video-viewer iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         /* ============ PDF SECTIONS ============ */
         .pdf-sections {
             padding: 6rem 2rem;
@@ -1111,6 +1184,51 @@
         </div>
     </section>
 
+    <!-- Video Lesson Playlists Section -->
+    <section class="video-sections" id="video-playlists">
+        <div class="video-container">
+            <div class="section-header reveal">
+                <span class="section-tag">More Video Lessons</span>
+                <h2 class="section-title">
+                    Video Playlists by Topic
+                    <span class="chinese">主题视频播放列表</span>
+                </h2>
+                <p class="section-desc">Browse our lessons organized by topic. Click a tab to watch the full playlist.</p>
+            </div>
+
+            <div class="video-tabs reveal">
+                <button class="video-tab active" onclick="switchVideo('video1', this)">🈶 Chinese Characters</button>
+                <button class="video-tab" onclick="switchVideo('video2', this)">💬 Useful Phrases</button>
+                <button class="video-tab" onclick="switchVideo('video3', this)">🔤 Pinyin Pronunciation</button>
+                <button class="video-tab" onclick="switchVideo('video4', this)">📖 Vocabulary</button>
+            </div>
+
+            <div id="video1" class="video-content active reveal">
+                <div class="video-viewer">
+                    <iframe src="https://www.youtube.com/embed/videoseries?list=PLlHLXsD5BfOudHurxK11eXiFeuJfFcsrd" title="Chinese Characters and their History Playlist" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div id="video2" class="video-content reveal">
+                <div class="video-viewer">
+                    <iframe src="https://www.youtube.com/embed/videoseries?list=PLlHLXsD5BfOsKHrueksDzVBXmXQkj877A" title="Useful Phrases for Chinese Beginners Playlist" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div id="video3" class="video-content reveal">
+                <div class="video-viewer">
+                    <iframe src="https://www.youtube.com/embed/videoseries?list=PLlHLXsD5BfOt-veEwbAJ3wZOs8T9NsFqH" title="Chinese Pronunciation Using Pinyin Playlist" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div id="video4" class="video-content reveal">
+                <div class="video-viewer">
+                    <iframe src="https://www.youtube.com/embed/videoseries?list=PLlHLXsD5BfOsXsq9RLI-zP3_CAsXU_xVz" title="Chinese Vocabulary Playlist" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- PDF Sections -->
     <section class="pdf-sections" id="pdfs">
         <div class="pdf-container">
@@ -1363,6 +1481,15 @@
             // Add active to clicked tab
             btn.classList.add('active');
             document.getElementById(pdfId).classList.add('active');
+        }
+
+        // ============ VIDEO PLAYLIST TAB SWITCHING ============
+        function switchVideo(videoId, btn) {
+            document.querySelectorAll('.video-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.video-content').forEach(content => content.classList.remove('active'));
+
+            btn.classList.add('active');
+            document.getElementById(videoId).classList.add('active');
         }
 
         // ============ SCROLL REVEAL ============
