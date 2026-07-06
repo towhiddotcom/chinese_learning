@@ -1,0 +1,25 @@
+{
+  "name": "Harbin Mandarin — Learn Standard Chinese",
+  "short_name": "Harbin Mandarin",
+  "description": "Learn standard Mandarin Chinese pronunciation from Harbin with Yishuang. Free video lessons, structured HSK courses, and downloadable PDF materials.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FFF8F5",
+  "theme_color": "#C41E3A",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
