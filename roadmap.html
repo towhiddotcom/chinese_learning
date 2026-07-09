@@ -475,22 +475,6 @@ LEVELS.forEach((lvl, idx) => {
     content.appendChild(section);
 });
 
-// Resources block appended once at the end
-const resources = document.createElement('div');
-resources.className = 'resources';
-resources.innerHTML = `
-    <h3><i class="fa-solid fa-book" style="color:var(--primary)"></i> Essential Resources</h3>
-    <div class="res-grid">
-        <div class="res-item"><b>HelloChinese</b> — gamified beginner-friendly app</div>
-        <div class="res-item"><b>Pleco</b> — dictionary with stroke order & audio</div>
-        <div class="res-item"><b>Anki</b> — spaced-repetition flashcards</div>
-        <div class="res-item"><b>ChinesePod</b> — graded listening practice</div>
-        <div class="res-item"><b>Forvo</b> — native speaker pronunciation lookup</div>
-        <div class="res-item"><b>HSK Online</b> — official past papers & mock exams</div>
-    </div>
-`;
-content.appendChild(resources);
-
 function showLevel(idx) {
     document.querySelectorAll('.level-section').forEach((s, i) => s.classList.toggle('active', i === idx));
     document.querySelectorAll('.level-pill').forEach((p, i) => p.classList.toggle('active', i === idx));
