@@ -1,6 +1,6 @@
 // ============ HARBIN MANDARIN — SERVICE WORKER ============
-const CACHE_NAME = 'harbin-mandarin-v1';
-const RUNTIME_CACHE = 'harbin-mandarin-runtime-v1';
+const CACHE_NAME = 'harbin-mandarin-v2';
+const RUNTIME_CACHE = 'harbin-mandarin-runtime-v2';
 
 // Core app shell — cached immediately on install
 const PRECACHE_ASSETS = [

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HSK 1–6 Roadmap — Harbin Mandarin</title>
+<meta name="description" content="A complete self-study roadmap from HSK 1 to HSK 6 — weekly plans, vocabulary targets, and grammar milestones.">
+<meta name="theme-color" content="#C41E3A">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" type="image/png" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+    :root {
+        --primary: #C41E3A;
+        --primary-light: #E85D75;
+        --primary-dark: #8B1528;
+        --primary-glow: rgba(196, 30, 58, 0.15);
+        --cream: #FFF8F5;
+        --white: #FFFFFF;
+        --text-dark: #1A1A2E;
+        --text-muted: #6B6B7B;
+        --glass-border: rgba(196, 30, 58, 0.1);
+        --gradient-hero: linear-gradient(135deg, #FFF8F5 0%, #FFE4E1 50%, #FFF0F5 100%);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+        font-family:'Inter','Noto Sans SC',sans-serif;
+        background:var(--cream);
+        color:var(--text-dark);
+        line-height:1.6;
+    }
+    a { text-decoration:none; color:inherit; }
+
+    /* Top bar */
+    .topbar {
+        position:sticky; top:0; z-index:50;
+        background:rgba(255,248,245,0.92);
+        backdrop-filter:blur(10px);
+        border-bottom:1px solid var(--glass-border);
+        padding:1rem 2rem;
+        display:flex; align-items:center; justify-content:space-between;
+    }
+    .topbar .brand { font-weight:800; color:var(--primary); font-size:1.1rem; }
+    .topbar .back {
+        font-size:0.9rem; font-weight:600; color:var(--text-muted);
+        display:flex; align-items:center; gap:0.4rem;
+        border:2px solid var(--glass-border); padding:0.5rem 1rem; border-radius:50px;
+        transition:all 0.25s;
+    }
+    .topbar .back:hover { border-color:var(--primary); color:var(--primary); }
+
+    /* Hero */
+    .hero {
+        background:var(--gradient-hero);
+        padding:4rem 2rem 3rem;
+        text-align:center;
+    }
+    .hero-badge {
+        display:inline-block; background:var(--primary); color:#fff;
+        font-size:0.75rem; font-weight:700; letter-spacing:1px;
+        padding:0.4rem 1rem; border-radius:50px; margin-bottom:1rem;
+    }
+    .hero h1 {
+        font-size:clamp(2rem, 5vw, 3rem); font-weight:800;
+        color:var(--text-dark); margin-bottom:0.5rem;
+    }
+    .hero h1 span { color:var(--primary); display:block; font-family:'Noto Sans SC',sans-serif; font-size:0.55em; margin-top:0.3rem; }
+    .hero p { color:var(--text-muted); max-width:620px; margin:0 auto; font-size:1.05rem; }
+
+    .stats-row {
+        max-width:900px; margin:2.5rem auto 0; display:grid;
+        grid-template-columns:repeat(4,1fr); gap:1rem; padding:0 1rem;
+    }
+    .stat-card {
+        background:#fff; border:1px solid var(--glass-border); border-radius:16px;
+        padding:1.2rem 0.5rem; text-align:center;
+        box-shadow:0 4px 20px rgba(0,0,0,0.04);
+    }
+    .stat-card .num { font-size:1.6rem; font-weight:800; color:var(--primary); }
+    .stat-card .label { font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px; margin-top:0.2rem; }
+
+    /* Level nav pills */
+    .level-nav {
+        display:flex; gap:0.6rem; flex-wrap:wrap; justify-content:center;
+        max-width:1000px; margin:2.5rem auto 0; padding:0 1rem;
+    }
+    .level-pill {
+        border:2px solid var(--glass-border); background:#fff; color:var(--text-muted);
+        font-weight:700; font-size:0.85rem; padding:0.55rem 1.1rem; border-radius:50px;
+        cursor:pointer; transition:all 0.25s;
+    }
+    .level-pill:hover { border-color:var(--primary); color:var(--primary); }
+    .level-pill.active { background:var(--primary); border-color:var(--primary); color:#fff; }
+
+    /* Main content */
+    .content { max-width:900px; margin:0 auto; padding:3rem 1.2rem 6rem; }
+
+    .level-section { display:none; }
+    .level-section.active { display:block; animation:fadeIn 0.4s ease; }
+    @keyframes fadeIn { from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+    .level-header {
+        background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color:#fff; border-radius:20px; padding:1.8rem 1.6rem; margin-bottom:1.5rem;
+        position:relative; overflow:hidden;
+    }
+    .level-header .tag { font-size:0.75rem; font-weight:700; letter-spacing:1px; opacity:0.85; }
+    .level-header h2 { font-size:1.6rem; font-weight:800; margin:0.3rem 0; }
+    .level-header .sub { font-size:0.9rem; opacity:0.9; }
+    .level-header .meta-row { display:flex; gap:1.5rem; margin-top:1rem; flex-wrap:wrap; }
+    .level-header .meta-row div { font-size:0.8rem; opacity:0.9; }
+    .level-header .meta-row b { display:block; font-size:1.1rem; }
+
+    .month-card {
+        background:#fff; border:1px solid var(--glass-border); border-radius:16px;
+        margin-bottom:1rem; overflow:hidden;
+        box-shadow:0 4px 15px rgba(0,0,0,0.03);
+    }
+    .month-toggle {
+        display:flex; align-items:center; justify-content:space-between;
+        padding:1.1rem 1.4rem; cursor:pointer; gap:1rem;
+    }
+    .month-toggle .badge {
+        background:var(--primary-glow); color:var(--primary); font-size:0.7rem; font-weight:800;
+        padding:0.3rem 0.7rem; border-radius:50px; white-space:nowrap;
+    }
+    .month-toggle .info { flex:1; }
+    .month-toggle .info h3 { font-size:1rem; font-weight:700; }
+    .month-toggle .info .dates { font-size:0.78rem; color:var(--text-muted); }
+    .month-toggle .chev { transition:transform 0.3s; color:var(--text-muted); }
+    .month-card.open .chev { transform:rotate(180deg); }
+
+    .month-body { max-height:0; overflow:hidden; transition:max-height 0.4s ease; }
+    .month-card.open .month-body { max-height:2000px; }
+    .week-row {
+        padding:0.9rem 1.4rem; border-top:1px solid var(--glass-border);
+        display:flex; gap:1rem;
+    }
+    .week-row .wk {
+        font-weight:800; color:var(--primary); font-size:0.85rem; min-width:34px;
+    }
+    .week-row .wk-body h4 { font-size:0.92rem; font-weight:700; margin-bottom:0.15rem; }
+    .week-row .wk-body p { font-size:0.83rem; color:var(--text-muted); margin-bottom:0.2rem; }
+    .week-row .wk-body .range { font-size:0.72rem; color:var(--primary-light); font-weight:600; }
+
+    .overview-item {
+        padding:0.9rem 1.4rem; border-top:1px solid var(--glass-border);
+    }
+    .overview-item h4 { font-size:0.92rem; font-weight:700; margin-bottom:0.2rem; }
+    .overview-item p { font-size:0.83rem; color:var(--text-muted); }
+    .overview-item .range { font-size:0.72rem; color:var(--primary-light); font-weight:600; margin-top:0.15rem; display:block; }
+
+    .resources {
+        background:#fff; border:1px solid var(--glass-border); border-radius:16px;
+        padding:1.4rem; margin-top:2rem;
+    }
+    .resources h3 { font-size:1rem; margin-bottom:0.8rem; display:flex; align-items:center; gap:0.5rem; }
+    .res-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.7rem; }
+    .res-grid .res-item { font-size:0.85rem; }
+    .res-grid .res-item b { color:var(--primary); }
+    @media (max-width:600px){ .res-grid, .stats-row { grid-template-columns:1fr 1fr; } }
+
+    .disclaimer {
+        max-width:900px; margin:0 auto 3rem; padding:0 1.2rem;
+        font-size:0.78rem; color:var(--text-muted); text-align:center;
+    }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="brand">哈 Harbin Mandarin</div>
+    <a href="./index.html" class="back"><i class="fa-solid fa-arrow-left"></i> Back to Site</a>
+</div>
+
+<div class="hero">
+    <span class="hero-badge">SELF-STUDY ROADMAP</span>
+    <h1>HSK 1 → HSK 6 Roadmap <span>零基础到高级中文之路</span></h1>
+    <p>A complete, realistic path from absolute beginner to advanced Mandarin — paced for about 20–30 minutes of focused daily study.</p>
+
+    <div class="stats-row">
+        <div class="stat-card"><div class="num">6</div><div class="label">HSK Levels</div></div>
+        <div class="stat-card"><div class="num">47</div><div class="label">Months</div></div>
+        <div class="stat-card"><div class="num">~3.9</div><div class="label">Years Total</div></div>
+        <div class="stat-card"><div class="num">5000</div><div class="label">Target Words</div></div>
+    </div>
+
+    <div class="level-nav" id="levelNav"></div>
+</div>
+
+<div class="content" id="content"></div>
+
+<div class="disclaimer">
+    Timelines are estimates for a part-time learner studying independently. Actual pace will vary by practice consistency, prior language background, and how much speaking/listening practice is added on top of self-study.
+</div>
+
+<script>
+const LEVELS = [
+    {
+        id: 1,
+        name: "HSK 1",
+        sub: "Absolute Beginner — building the foundation",
+        words: "0 → 150",
+        chars: "0 → 174",
+        duration: "6 months",
+        dateRange: "Jul 9 – Dec 23, 2026",
+        detailed: true,
+        months: [
+            {
+                badge: "MONTH 1", title: "Sounds of Mandarin", dates: "Jul 9 – Aug 5, 2026",
+                weeks: [
+                    { w:"W1", title:"Pinyin Initials & Finals", desc:"Learn all consonant and vowel sounds, practice reading pinyin syllables aloud before attaching tones.", range:"Chars 0–10 · Words 0–20" },
+                    { w:"W2", title:"The Four Tones", desc:"Tone shapes (flat, rising, dipping, falling), tone pair drills, and the 3rd-tone sandhi rule.", range:"Chars 10–20 · Words 20–40" },
+                    { w:"W3", title:"Greetings & Self-Introduction", desc:"你好, 谢谢, 再见, and a short self-introduction script (name, nationality, one hobby).", range:"Chars 20–35 · Words 40–65" },
+                    { w:"W4", title:"Review & Speaking Check", desc:"Record yourself reading 10 sentences aloud; compare against native audio and fix tone errors.", range:"Chars 35–45 · Words 65–90" }
+                ]
+            },
+            {
+                badge: "MONTH 2", title: "Numbers & Everyday Basics", dates: "Aug 6 – Sep 2, 2026",
+                weeks: [
+                    { w:"W5", title:"Numbers 0–100", desc:"Counting, phone numbers, prices, and asking 多少钱 (how much).", range:"Chars 45–55 · Words 90–115" },
+                    { w:"W6", title:"Dates & Time Words", desc:"今天/明天/昨天, days of the week, and telling the time in whole hours.", range:"Chars 55–65 · Words 115–140" },
+                    { w:"W7", title:"Family & People", desc:"Family member terms, 是 sentences, and simple possession with 的.", range:"Chars 65–75 · Words 140–160" },
+                    { w:"W8", title:"Review & Mini Quiz", desc:"20-question vocabulary quiz plus a 1-minute self-introduction speaking drill.", range:"Chars 75–85 · Words 160–180" }
+                ]
+            },
+            {
+                badge: "MONTH 3", title: "First Characters", dates: "Sep 3 – Sep 30, 2026",
+                weeks: [
+                    { w:"W9", title:"Stroke Order Basics", desc:"The 8 basic strokes and radicals, writing 人, 大, 小, 木, 水, 火.", range:"Chars 85–95 · Words 180–195" },
+                    { w:"W10", title:"Common Radicals", desc:"氵, 口, 木, 日 — recognizing meaning clues inside characters.", range:"Chars 95–105 · Words 195–210" },
+                    { w:"W11", title:"Simple Sentences", desc:"Subject + verb + object patterns using 喜欢, 有, 去.", range:"Chars 105–115 · Words 210–225" },
+                    { w:"W12", title:"Review & Character Test", desc:"Write 20 characters from memory; self-grade against a stroke-order reference.", range:"Chars 115–125 · Words 225–240" }
+                ]
+            },
+            {
+                badge: "MONTH 4", title: "Daily Conversation", dates: "Oct 1 – Oct 28, 2026",
+                weeks: [
+                    { w:"W13", title:"Asking Questions", desc:"吗, 呢, 什么, 哪儿, 谁 — turning statements into questions.", range:"Chars 125–135 · Words 240–255" },
+                    { w:"W14", title:"Location Words", desc:"在, 里, 上, 下, 前面, 后面 — describing where things are.", range:"Chars 135–145 · Words 255–270" },
+                    { w:"W15", title:"Likes & Preferences", desc:"喜欢 / 不喜欢, comparing two things with 比.", range:"Chars 145–155 · Words 270–285" },
+                    { w:"W16", title:"Review & Roleplay", desc:"Short roleplay: ordering a drink and asking for directions.", range:"Chars 155–165 · Words 285–300" }
+                ]
+            },
+            {
+                badge: "MONTH 5", title: "Listening & Vocabulary Push", dates: "Oct 29 – Nov 25, 2026",
+                weeks: [
+                    { w:"W17", title:"Food & Drink Vocabulary", desc:"Restaurant phrases, common dishes, measure words 杯/碗/盘.", range:"Chars 165–170 · Words 300–320" },
+                    { w:"W18", title:"Shopping & Colors", desc:"Clothing items, basic colors, bargaining phrases.", range:"Chars 170–172 · Words 320–335" },
+                    { w:"W19", title:"Weather & Seasons", desc:"天气, four seasons, simple weather descriptions.", range:"Chars 172–174 · Words 335–345" },
+                    { w:"W20", title:"Listening Practice", desc:"Slow-paced beginner dialogues with shadowing practice.", range:"Chars 174 · Words 345–350" }
+                ]
+            },
+            {
+                badge: "MONTH 6", title: "HSK 1 Consolidation", dates: "Nov 26 – Dec 23, 2026",
+                weeks: [
+                    { w:"W21", title:"Full Vocabulary Review", desc:"Cycle through all 150 target words with spaced repetition.", range:"150 words review" },
+                    { w:"W22", title:"Grammar Consolidation", desc:"Combine everything learned into 5–6 sentence mini paragraphs.", range:"Sentence building" },
+                    { w:"W23", title:"Mock Listening & Speaking Test", desc:"Full-length practice test under timed conditions.", range:"Mock exam" },
+                    { w:"W24", title:"HSK 1 Exam Week", desc:"Take the real (or practice) HSK 1 exam and set HSK 2 goals.", range:"🎉 HSK 1 complete" }
+                ]
+            }
+        ]
+    },
+    {
+        id: 2,
+        name: "HSK 2",
+        sub: "Elementary — connecting sentences into conversation",
+        words: "150 → 300",
+        chars: "174 → 347",
+        duration: "5 months",
+        dateRange: "Dec 24, 2026 – May 12, 2027",
+        detailed: true,
+        months: [
+            {
+                badge: "MONTH 7", title: "Past & Ongoing Actions", dates: "Dec 24, 2026 – Jan 20, 2027",
+                weeks: [
+                    { w:"W25", title:"了 for Completed Actions", desc:"Marking finished events, contrasting with the present tense.", range:"Chars 175–185 · Words 350–365" },
+                    { w:"W26", title:"在 for Ongoing Actions", desc:"正在 + verb, describing what is happening right now.", range:"Chars 185–195 · Words 365–380" },
+                    { w:"W27", title:"过 for Past Experience", desc:"我去过… — talking about things you've done before.", range:"Chars 195–205 · Words 380–395" },
+                    { w:"W28", title:"Review & Timeline Practice", desc:"Describe yesterday, today, and tomorrow in one short passage.", range:"Chars 205–215 · Words 395–410" }
+                ]
+            },
+            {
+                badge: "MONTH 8", title: "Making Plans", dates: "Jan 21 – Feb 17, 2027",
+                weeks: [
+                    { w:"W29", title:"想 / 要 / 可以 / 能", desc:"Modal verbs for wants, plans, permission, and ability.", range:"Chars 215–225 · Words 410–425" },
+                    { w:"W30", title:"Time Expressions", desc:"以前/以后, 的时候, and sequencing events with 先…再…", range:"Chars 225–235 · Words 425–440" },
+                    { w:"W31", title:"Making Appointments", desc:"Suggesting a time and place, accepting or declining politely.", range:"Chars 235–245 · Words 440–455" },
+                    { w:"W32", title:"Review & Dialogue Practice", desc:"Write and perform a short phone-call dialogue.", range:"Chars 245–255 · Words 455–470" }
+                ]
+            },
+            {
+                badge: "MONTH 9", title: "Comparisons & Descriptions", dates: "Feb 18 – Mar 17, 2027",
+                weeks: [
+                    { w:"W33", title:"比 Comparisons", desc:"A 比 B + adjective, and 没有 for negative comparison.", range:"Chars 255–265 · Words 470–485" },
+                    { w:"W34", title:"更 / 最 Degrees", desc:"更 (more) and 最 (most) — ranking and superlatives.", range:"Chars 265–275 · Words 485–500" },
+                    { w:"W35", title:"Describing People & Things", desc:"Adjective stacking, 一点儿/有一点儿 for degree.", range:"Chars 275–285 · Words 500–515" },
+                    { w:"W36", title:"Review & Description Practice", desc:"Describe a photo of a person or place in 5+ sentences.", range:"Chars 285–295 · Words 515–530" }
+                ]
+            },
+            {
+                badge: "MONTH 10", title: "Around Town", dates: "Mar 18 – Apr 14, 2027",
+                weeks: [
+                    { w:"W37", title:"Transportation", desc:"坐车/骑车/走路, asking for and giving simple directions.", range:"Chars 295–305 · Words 530–545" },
+                    { w:"W38", title:"Health & Body", desc:"生病, 舒服/不舒服, basic symptoms and seeing a doctor.", range:"Chars 305–315 · Words 545–560" },
+                    { w:"W39", title:"Hobbies & Free Time", desc:"运动, 音乐, 电影 — talking about weekend activities.", range:"Chars 315–320 · Words 560–575" },
+                    { w:"W40", title:"Review & Extended Dialogue", desc:"Combine transportation + plans into one connected conversation.", range:"Chars 320–330 · Words 575–590" }
+                ]
+            },
+            {
+                badge: "MONTH 11", title: "HSK 2 Consolidation", dates: "Apr 15 – May 12, 2027",
+                weeks: [
+                    { w:"W41", title:"Full Vocabulary Review", desc:"Cumulative review of all 300 target words.", range:"300 words review" },
+                    { w:"W42", title:"Grammar Consolidation", desc:"Mixed-pattern practice combining 了/在/过/比 in one exercise set.", range:"Grammar mix" },
+                    { w:"W43", title:"Mock Listening & Reading Test", desc:"Timed full-length practice exam.", range:"Mock exam" },
+                    { w:"W44", title:"HSK 2 Exam Week", desc:"Take the real (or practice) HSK 2 exam and set HSK 3 goals.", range:"🎉 HSK 2 complete" }
+                ]
+            }
+        ]
+    },
+    {
+        id: 3,
+        name: "HSK 3",
+        sub: "Pre-Intermediate — everyday fluency",
+        words: "300 → 600",
+        chars: "347 → 617",
+        duration: "6 months",
+        dateRange: "May 13 – Nov 9, 2027",
+        detailed: false,
+        overview: [
+            { title:"Complex Sentence Connectors", desc:"因为…所以…, 虽然…但是…, 如果…就… — linking ideas with reason, contrast, and condition.", range:"Months 12–13" },
+            { title:"Resultative & Directional Complements", desc:"完, 好, 到, 起来, 下去 attached to verbs to show outcome and direction.", range:"Months 13–14" },
+            { title:"把 and 被 Sentences", desc:"Disposal (把) and passive (被) sentence structures for describing what happens to an object.", range:"Month 14" },
+            { title:"Extended Vocabulary — Work & Study", desc:"School, office, and daily-routine vocabulary sets, reaching 500 cumulative words.", range:"Month 15" },
+            { title:"Storytelling & Sequencing", desc:"Narrating a short personal story using time connectors and complements together.", range:"Month 16" },
+            { title:"HSK 3 Mock Exams & Review", desc:"Full-length timed practice tests, error-log review, and final vocabulary sprint to 600 words.", range:"Month 17" }
+        ]
+    },
+    {
+        id: 4,
+        name: "HSK 4",
+        sub: "Intermediate — discussing opinions and abstract topics",
+        words: "600 → 1200",
+        chars: "617 → 1064",
+        duration: "8 months",
+        dateRange: "Nov 10, 2027 – Jul 7, 2028",
+        detailed: false,
+        overview: [
+            { title:"Idiomatic Expressions & Set Phrases", desc:"Common 成语-adjacent expressions and fixed collocations used in daily and news Chinese.", range:"Months 18–19" },
+            { title:"Complex Complements", desc:"Potential complements (得/不 + result), extent complements (得 + adjective), stacked modifiers.", range:"Months 20–21" },
+            { title:"Formal vs. Casual Register", desc:"Recognizing when to switch between spoken and written/formal phrasing.", range:"Month 22" },
+            { title:"Opinion & Argument Vocabulary", desc:"Expressing agreement, disagreement, and reasoning — 我认为, 据我所知, 不管…都…", range:"Month 23" },
+            { title:"Reading Short Articles", desc:"Graded short articles and simplified news items with comprehension questions.", range:"Months 24–25" },
+            { title:"HSK 4 Mock Exams & Review", desc:"Full-length timed exams, listening speed increases, vocabulary sprint to 1200 words.", range:"Month 25" }
+        ]
+    },
+    {
+        id: 5,
+        name: "HSK 5",
+        sub: "Upper-Intermediate — near-native comprehension",
+        words: "1200 → 2500",
+        chars: "1064 → 1685",
+        duration: "10 months",
+        dateRange: "Jul 8, 2028 – May 6, 2029",
+        detailed: false,
+        overview: [
+            { title:"Advanced Grammar Patterns", desc:"尽管, 除非, 无论…都…, 一…就… and other literary-leaning connectors.", range:"Months 26–28" },
+            { title:"Listening to Native-Speed Media", desc:"Podcasts, interviews, and short videos at natural speaking speed.", range:"Months 28–30" },
+            { title:"Essay & Long-Form Writing", desc:"Structuring a 200–300 character opinion essay with clear argument flow.", range:"Months 30–31" },
+            { title:"Topic-Based Vocabulary Expansion", desc:"Business, environment, technology, and social-issue vocabulary sets.", range:"Months 31–33" },
+            { title:"Debate & Discussion Practice", desc:"Structured speaking practice defending a position on a given topic.", range:"Months 33–34" },
+            { title:"HSK 5 Mock Exams & Review", desc:"Full-length timed exams and vocabulary sprint to 2500 words.", range:"Month 35" }
+        ]
+    },
+    {
+        id: 6,
+        name: "HSK 6",
+        sub: "Advanced — reading, writing, and reasoning like a native reader",
+        words: "2500 → 5000",
+        chars: "1685 → 2663",
+        duration: "12 months",
+        dateRange: "May 7, 2029 – May 5, 2030",
+        detailed: false,
+        overview: [
+            { title:"Literary & Written Chinese Patterns", desc:"Classical-influenced constructions still common in essays, news, and formal writing.", range:"Months 36–38" },
+            { title:"Extensive Reading", desc:"Unabridged short stories, opinion pieces, and long-form articles with minimal glossing.", range:"Months 38–41" },
+            { title:"Advanced Listening — News & Lectures", desc:"Full-speed news broadcasts and short academic-style talks.", range:"Months 41–43" },
+            { title:"Formal Essay Writing", desc:"400+ character argumentative essays with structured reasoning and idiomatic phrasing.", range:"Months 43–45" },
+            { title:"Nuance, Register & Idiom Mastery", desc:"成语, tone/register shifts, and distinguishing near-synonyms in context.", range:"Months 45–46" },
+            { title:"HSK 6 Mock Exams & Final Review", desc:"Full-length timed exams, final vocabulary sprint to 5000 words, and exam-day strategy.", range:"Month 47" }
+        ]
+    }
+];
+
+const nav = document.getElementById('levelNav');
+const content = document.getElementById('content');
+
+LEVELS.forEach((lvl, idx) => {
+    const pill = document.createElement('button');
+    pill.className = 'level-pill' + (idx === 0 ? ' active' : '');
+    pill.textContent = lvl.name;
+    pill.onclick = () => showLevel(idx);
+    nav.appendChild(pill);
+
+    const section = document.createElement('div');
+    section.className = 'level-section' + (idx === 0 ? ' active' : '');
+    section.id = 'level-' + lvl.id;
+
+    let monthsHTML = '';
+    if (lvl.detailed) {
+        monthsHTML = lvl.months.map((m, mi) => `
+            <div class="month-card${mi === 0 ? ' open' : ''}">
+                <div class="month-toggle" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="badge">${m.badge}</span>
+                    <div class="info">
+                        <h3>${m.title}</h3>
+                        <div class="dates">${m.dates}</div>
+                    </div>
+                    <span class="chev"><i class="fa-solid fa-chevron-down"></i></span>
+                </div>
+                <div class="month-body">
+                    ${m.weeks.map(w => `
+                        <div class="week-row">
+                            <div class="wk">${w.w}</div>
+                            <div class="wk-body">
+                                <h4>${w.title}</h4>
+                                <p>${w.desc}</p>
+                                <span class="range">${w.range}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+    } else {
+        monthsHTML = `
+            <div class="month-card open">
+                <div class="month-toggle" style="cursor:default;">
+                    <span class="badge">OVERVIEW</span>
+                    <div class="info">
+                        <h3>${lvl.name} Focus Areas</h3>
+                        <div class="dates">${lvl.dateRange}</div>
+                    </div>
+                </div>
+                <div class="month-body">
+                    ${lvl.overview.map(o => `
+                        <div class="overview-item">
+                            <h4>${o.title}</h4>
+                            <p>${o.desc}</p>
+                            <span class="range">${o.range}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    section.innerHTML = `
+        <div class="level-header">
+            <div class="tag">LEVEL ${lvl.id}${lvl.detailed ? '' : ' · OVERVIEW'}</div>
+            <h2>${lvl.name} — ${lvl.sub}</h2>
+            <div class="sub">${lvl.dateRange}</div>
+            <div class="meta-row">
+                <div>Duration<b>${lvl.duration}</b></div>
+                <div>Words<b>${lvl.words}</b></div>
+                <div>Characters<b>${lvl.chars}</b></div>
+            </div>
+        </div>
+        ${monthsHTML}
+    `;
+    content.appendChild(section);
+});
+
+// Resources block appended once at the end
+const resources = document.createElement('div');
+resources.className = 'resources';
+resources.innerHTML = `
+    <h3><i class="fa-solid fa-book" style="color:var(--primary)"></i> Essential Resources</h3>
+    <div class="res-grid">
+        <div class="res-item"><b>HelloChinese</b> — gamified beginner-friendly app</div>
+        <div class="res-item"><b>Pleco</b> — dictionary with stroke order & audio</div>
+        <div class="res-item"><b>Anki</b> — spaced-repetition flashcards</div>
+        <div class="res-item"><b>ChinesePod</b> — graded listening practice</div>
+        <div class="res-item"><b>Forvo</b> — native speaker pronunciation lookup</div>
+        <div class="res-item"><b>HSK Online</b> — official past papers & mock exams</div>
+    </div>
+`;
+content.appendChild(resources);
+
+function showLevel(idx) {
+    document.querySelectorAll('.level-section').forEach((s, i) => s.classList.toggle('active', i === idx));
+    document.querySelectorAll('.level-pill').forEach((p, i) => p.classList.toggle('active', i === idx));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
